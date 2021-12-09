@@ -1,0 +1,22 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+{% block body %}
+    <h1>Search Results</h1>
+
+{% if results == None %}
+    <div class="alert alert-warning" role="alert">
+    <h3>No results. Please try again.</h3>
+    </div>
+{% else %}
+    {% for x in results %}
+        <ul class="list-group">
+        <li class="list-group-item"><a href = "article/{{ x }}">{{ x }}</a></li>
+        </ul>
+    {% endfor %}
+{% endif %}
+<a href="/" class="page-link">Return Home</a>
+{% endblock %}
