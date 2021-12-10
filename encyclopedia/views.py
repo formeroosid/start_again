@@ -5,8 +5,9 @@ import random
 
 
 def index(request):
+    search_form = SearchForm()
     return render(request, "encyclopedia/index.html", {
-        "entries": util.list_entries()})
+        "entries": util.list_entries(), 'search_form': search_form})
 
 
 def article(request, title):
@@ -16,14 +17,17 @@ def article(request, title):
 
 
 def rando(request):
+    search_form = SearchForm()
     entry_list = util.list_entries()
     rand = random.choice(entry_list)
     return render(request, "encyclopedia/rando.html", {
-        "title": util.markup_to_html(rand)
+        "title": util.markup_to_html(rand),
+        'search_form': search_form
     })
 
 
 def create(request):
+    search_form = SearchForm()
     form = NewArticleForm()
     if request.method == "POST":  # check for a submitted form
         initial_dict = {
@@ -37,12 +41,12 @@ def create(request):
             content = clean["body"]
             save = util.save_entry(title, content)  # Capture return from save function
             return render(request, "encyclopedia/new_article.html", {'form1': form, "save": save})
-    return render(request, "encyclopedia/new_article.html", {'form1': form})
+    return render(request, "encyclopedia/new_article.html", {'form1': form, 'search_form': search_form})
 
 
 def search(request):
-    myform = SearchForm()
-    return render(request, "encyclopedia/search_results.html", {'form': myform})
+    search_form = SearchForm()
+    return render(request, "encyclopedia/search_results.html", {'search_form': search_form})
 
 
 def edit_article(request, selection):

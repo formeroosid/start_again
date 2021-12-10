@@ -1,0 +1,30 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Create Article
+{% endblock %}
+
+{% block body %}
+    <h1>Article Creation </h1>
+    <div class="form-group">
+    </div>
+    <div class="form-group">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form1.as_p }}
+            <button class="btn-dark" type="submit">Submit</button>
+        </form>
+    </div>
+    {#    {%  if save == True %} {#if save is True display success message#}
+    {#        <div class="alert alert-success" role="alert">#}
+    {#        <strong>Swamp Castle Encyclopedia</strong>#}
+    {#        Entry saved.#}
+    {#        </div>#}
+    {#    {% elif save == False %} {# if save contains a string , display error#}
+    {#        <div class="alert alert-danger" role="alert">#}
+    {#        <strong>Swamp Castle Encyclopedia</strong>#}
+    {#        Duplicate entry. Please enter another name.#}
+    {#        </div>#}
+    {#    {% endif %}#}
+
+{% endblock %}
