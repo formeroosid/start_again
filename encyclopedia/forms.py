@@ -3,7 +3,7 @@ from .util import list_entries
 
 
 class SearchForm(forms.Form):
-    entry = forms.CharField(widget=forms.Textarea(attrs={'required': False}))
+    entry = forms.CharField(label='', widget=forms.TextInput(attrs={'required': False}))
 
 class NewArticleForm(forms.Form):
     name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'cols': 60, 'rows': 3, 'required': True}))
