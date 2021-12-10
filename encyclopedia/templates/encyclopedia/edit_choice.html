@@ -7,10 +7,10 @@
 {% block body %}
     <h3>Select entry to edit</h3>
     <div class="form-group">
-        <form method="POST">
-                {% csrf_token %}
-                {{ form3.as_p }}
-                <button class="btn-dark" type="submit">Submit</button>
+        <form>
+            {% csrf_token %}
+            {{ form3.as_p }}
+            <button class="btn-dark" type="submit">Submit</button>
         </form>
     </div>
 

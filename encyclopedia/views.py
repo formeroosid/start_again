@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import SearchForm, NewArticleForm, ChooseArticleForEdit, EditArticleForm
+from .forms import NewArticleForm, ChooseArticleForEdit, EditArticleForm
 from . import util
 import random
 
@@ -41,8 +41,12 @@ def create(request):
 
 
 def search(request):
-    myform = SearchForm()
-    return render(request, "encyclopedia/search_results.html", {'form': myform})
+    keywords = request.GET.getlist('entry')
+    results = None
+    if len(keywords) > 0:
+        results = util.search_entry(keywords[0])
+    return render(request, "encyclopedia/search_results.html", {'results': results})
+
 
 
 def edit_article(request, selection):
