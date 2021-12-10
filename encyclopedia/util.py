@@ -49,7 +49,7 @@ def search_entry(search):
     files = os.listdir("entries")
     results = []
     for x in files:
-        if search in x:
+        if x.lower().startswith(search.lower()):
             results.append(x)
     if len(results) == 0:
         return None

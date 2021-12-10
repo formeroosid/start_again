@@ -46,7 +46,11 @@ def create(request):
 
 def search(request):
     search_form = SearchForm()
-    return render(request, "encyclopedia/search_results.html", {'search_form': search_form})
+    keywords = request.GET.getlist('entry')
+    results = None
+    if len(keywords) > 0:
+        results = util.search_entry(keywords[0])
+    return render(request, "encyclopedia/search_results.html", {'search_form': search_form, 'results': results})
 
 
 def edit_article(request, selection):
