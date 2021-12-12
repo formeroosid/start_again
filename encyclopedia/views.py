@@ -48,12 +48,7 @@ def search(request):
     return render(request, "encyclopedia/search_results.html", {'results': results})
 
 
-
 def edit_article(request, title):
     form = EditArticleForm()
     entry_data = util.edit_entry(title)
-
-    return render(request, "encyclopedia/edit_article.html", {"form2": form, "file": f})
-
-
-
+    return render(request, "encyclopedia/edit_article.html", {"form2": form, "entry_data": entry_data})

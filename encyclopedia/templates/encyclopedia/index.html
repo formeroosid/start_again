@@ -9,9 +9,12 @@
                 <ul class="list-group">
                     {% for entry in entries %}
                     <li class="list-group-item list-group-item-action list-group-item-primary"><a href = "wiki/{{ entry }}">{{ entry }}</a>
-                    <button id="edit_article" class="btn-dark 'float: right'">
-                    Edit this article
-                    </button>
+                        <form action="{% url 'edit' %}" method="POST">
+                            <input type="hidden" id="title" value="{{ entry }}">
+                            {% csrf_token %}
+                        <input type="submit" id="edit_article" class="btn-dark 'float: right'" value="Edit">
+                        </input>
+                        </form>
                     </li>
                     {% endfor %}
                 </ul>

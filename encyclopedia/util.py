@@ -59,7 +59,7 @@ def search_entry(search):
             results[count] = results[count][:-3]
         return results
 
-def edit_entry(title):
+def edit_article(title):
     target_File = get_entry(title)
     file_html_content = markup_to_html(target_File)
     return title, file_html_content
