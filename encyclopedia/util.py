@@ -59,6 +59,10 @@ def search_entry(search):
             results[count] = results[count][:-3]
         return results
 
+def edit_entry(title):
+    target_File = get_entry(title)
+    file_html_content = markup_to_html(target_File)
+    return title, file_html_content
 
 def markup_to_html(title):
     html = markdown2.markdown_path(f"entries/{title}.md")

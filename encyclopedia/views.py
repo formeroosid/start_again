@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import SearchForm, NewArticleForm, ChooseArticleForEdit, EditArticleForm
+from .forms import SearchForm, NewArticleForm, EditArticleForm
 from . import util
 import random
 
@@ -49,13 +49,11 @@ def search(request):
 
 
 
-def edit_article(request, selection):
+def edit_article(request, title):
     form = EditArticleForm()
-    path = "entries/" + selection + ".md"
-    f = open(path, 'w')
+    entry_data = util.edit_entry(title)
+
     return render(request, "encyclopedia/edit_article.html", {"form2": form, "file": f})
 
 
-def select_article_for_edit(request):
-    form = ChooseArticleForEdit()
-    return render(request, "encyclopedia/edit_choice.html", {"form3": form})
+

@@ -13,7 +13,7 @@ class EditArticleForm(forms.Form):
     name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'cols': 60, 'rows': 3, 'Field.disabled' : True}))
     body = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'cols': 60, 'rows': 5, 'required': True}))
 
-class ChooseArticleForEdit(forms.Form):
-    entries = list_entries()
-    article = forms.CharField(label="Choose the article you would like to edit.", widget=forms.Select(choices=entries))
+    def __init__(self, data, **kwargs):
+        inital = kwargs.get('initial', {})
+        data = {**inital, **data}
 
