@@ -14,7 +14,14 @@
 {% else %}
     {% for x in results %}
         <ul class="list-group">
-        <li class="list-group-item"><a href = "/wiki/{{ x }}">{{ x }}</a></li>
+            <li class="list-group-item"><a href = "/wiki/{{ x }}">{{ x }}</a>
+                <form action="{% url 'edit' %}" method="POST">
+                        <input type="hidden" id="title" value="{{ entry }}">
+                        {% csrf_token %}
+                        <input type="submit" id="edit_article" class="btn-dark 'float: right'" value="Edit">
+                        </input>
+                </form>
+            </li>
         </ul>
     {% endfor %}
 {% endif %}

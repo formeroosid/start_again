@@ -1,7 +1,9 @@
-from django.shortcuts import render
-from .forms import SearchForm, NewArticleForm, EditArticleForm
-from . import util
 import random
+
+from django.shortcuts import render
+
+from . import util
+from .forms import NewArticleForm, EditArticleForm
 
 
 def index(request):
