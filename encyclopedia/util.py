@@ -18,7 +18,7 @@ def list_entries():
 def save_entry(title, content):
     """
     Saves an encyclopedia entry, given its title and Markdown
-    content and returns True for succsessful save. If an existing entry with the same title already exists,
+    content and returns True for successful save. If an existing entry with the same title already exists,
     an error string is returned.
     """
     filename = f"entries/{title}.md"
@@ -59,10 +59,12 @@ def search_entry(search):
             results[count] = results[count][:-3]
         return results
 
+
 def edit_article(title):
-    target_File = get_entry(title)
-    file_html_content = markup_to_html(target_File)
+    target_file = get_entry(title)
+    file_html_content = markup_to_html(target_file)
     return title, file_html_content
+
 
 def markup_to_html(title):
     html = markdown2.markdown_path(f"entries/{title}.md")
