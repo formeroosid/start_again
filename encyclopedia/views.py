@@ -4,6 +4,7 @@ from django.shortcuts import render
 
 from . import util
 from .forms import NewArticleForm, EditArticleForm
+from django.shortcuts import redirect
 
 
 def index(request):
@@ -51,6 +52,13 @@ def search(request):
 
 
 def edit_article(request, title):
-    form = EditArticleForm()
     entry_data = util.edit_entry(title)
-    return render(request, "encyclopedia/edit_article.html", {"form2": form, "entry_data": entry_data})
+    initial_data = {
+        'name': entry_data[0],
+        'body': entry_data[1]
+    }
+    form = EditArticleForm(request.POST or None, initial=initial_data)
+    if form.is_valid():
+        form.save()
+        return redirect('index')
+    return render(request, "encyclopedia/edit_article.html", {"form2": form})

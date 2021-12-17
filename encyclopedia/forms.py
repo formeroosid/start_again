@@ -1,3 +1,4 @@
+import requests
 from django import forms
 from .util import list_entries
 
@@ -19,6 +20,3 @@ class EditArticleForm(forms.Form):
     body = forms.CharField(
         widget=forms.Textarea(attrs={'class': 'form-control', 'cols': 60, 'rows': 5, 'required': True}))
 
-    # def __init__(self, data, **kwargs):
-    # inital = kwargs.get('initial', {})
-    # data = {**inital, **data}

@@ -2,6 +2,7 @@ import re
 import os
 
 import markdown2
+import requests
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
 
@@ -60,10 +61,10 @@ def search_entry(search):
         return results
 
 
-def edit_article(title):
+def edit_entry(title):
     target_file = get_entry(title)
     file_html_content = markup_to_html(target_file)
-    return title, file_html_content
+    return target_file, file_html_content
 
 
 def markup_to_html(title):
