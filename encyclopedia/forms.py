@@ -1,6 +1,5 @@
-import requests
+# import requests
 from django import forms
-from .util import list_entries
 
 
 class SearchForm(forms.Form):

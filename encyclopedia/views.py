@@ -51,14 +51,17 @@ def search(request):
     return render(request, "encyclopedia/search_results.html", {'results': results})
 
 
-def edit_article(request, title):
+def edit_article(request):
+    if request.method == 'POST' and request.POST != False:
+        title = list(request.POST.items())
+        title = title[1]
+        title = title[0]
+    else:
+        return False
     entry_data = util.edit_entry(title)
     initial_data = {
-        'name': entry_data[0],
+        'name': title,
         'body': entry_data[1]
     }
-    form = EditArticleForm(request.POST or None, initial=initial_data)
-    if form.is_valid():
-        form.save()
-        return redirect('index')
-    return render(request, "encyclopedia/edit_article.html", {"form2": form})
+    form = EditArticleForm(initial=initial_data)
+    return render(request, "encyclopedia/edit_article.html", {"form": form})

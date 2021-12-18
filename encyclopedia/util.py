@@ -62,9 +62,8 @@ def search_entry(search):
 
 
 def edit_entry(title):
-    target_file = get_entry(title)
-    file_html_content = markup_to_html(target_file)
-    return target_file, file_html_content
+    file_html_content = markup_to_html(title)
+    return title, file_html_content
 
 
 def markup_to_html(title):
