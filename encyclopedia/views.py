@@ -23,8 +23,8 @@ def rando(request):
     entry_list = util.list_entries()
     rand = random.choice(entry_list)
     return render(request, "encyclopedia/rando.html", {
-        "title": util.markup_to_html(rand)
-    })
+       "title": util.markup_to_html(rand)
+        })
 
 
 def create(request):
@@ -46,7 +46,6 @@ def create(request):
                 messages.success(request, "Article edits saved to disc.")
 
             return redirect('index')
-            # return render(request, "encyclopedia/new_article.html", {'form1': form, "save": save})
     return render(request, "encyclopedia/new_article.html", {'form1': form})
 
 
