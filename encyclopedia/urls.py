@@ -9,4 +9,5 @@ urlpatterns = [
     path("search_results/", views.search, name="search"),
     path("rando/", views.rando, name="rando"),
     path("edit_article/", views.edit_article, name="edit"),
+
 ]

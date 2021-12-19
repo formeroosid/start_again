@@ -1,7 +1,11 @@
-# Git
+<h1>Git</h1>
 
-Git is a version control tool that can be used to keep track of versions of a software project.
+<p>Git is a version control tool that can be used to keep track of versions of a software project.</p>
 
-## GitHub
+<p>BLAH</p>
 
-GitHub is an online service for hosting git repositories.
+<h2>GitHub</h2>
+
+<p>GitHub is an online service for hosting git repositories.</p>
+
+<h3>Still more BLAH</h3>

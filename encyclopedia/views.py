@@ -1,10 +1,11 @@
 import random
 
 from django.shortcuts import render
-
+from django.shortcuts import redirect
+from django.contrib import messages
 from . import util
 from .forms import NewArticleForm, EditArticleForm
-from django.shortcuts import redirect
+
 
 
 def index(request):
@@ -39,7 +40,13 @@ def create(request):
             title = clean["name"]
             content = clean["body"]
             save = util.save_entry(title, content)  # Capture return from save function
-            return render(request, "encyclopedia/new_article.html", {'form1': form, "save": save})
+            if save:
+                messages.success(request, "New article saved to disc")
+            else:
+                messages.success(request, "Article edits saved to disc.")
+
+            return redirect('index')
+            # return render(request, "encyclopedia/new_article.html", {'form1': form, "save": save})
     return render(request, "encyclopedia/new_article.html", {'form1': form})
 
 

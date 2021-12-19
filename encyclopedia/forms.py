@@ -19,3 +19,4 @@ class EditArticleForm(forms.Form):
     body = forms.CharField(
         widget=forms.Textarea(attrs={'class': 'form-control', 'cols': 60, 'rows': 5, 'required': True}))
 
+

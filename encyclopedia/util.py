@@ -2,9 +2,9 @@ import re
 import os
 
 import markdown2
-import requests
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
+
 
 
 def list_entries():
@@ -24,6 +24,8 @@ def save_entry(title, content):
     """
     filename = f"entries/{title}.md"
     if default_storage.exists(filename):
+        os.remove(filename)
+        default_storage.save(filename, ContentFile(content))
         return False
     else:
         default_storage.save(filename, ContentFile(content))
