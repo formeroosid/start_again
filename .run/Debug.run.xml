@@ -1,6 +1,5 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Debug" type="Python.DjangoServer" factoryName="Django server">
-    <log_file alias="output.txt" path="$USER_HOME$/Desktop" show_all="true" />
     <module name="start_again" />
     <option name="INTERPRETER_OPTIONS" value="" />
     <option name="PARENT_ENVS" value="true" />
@@ -17,7 +16,7 @@
     <option name="port" value="8000" />
     <option name="host" value="127.0.0.1" />
     <option name="additionalOptions" value="" />
-    <option name="browserUrl" value="http://127.0.0.1:8000/" />
+    <option name="browserUrl" value="" />
     <option name="runTestServer" value="false" />
     <option name="runNoReload" value="false" />
     <option name="useCustomRunCommand" value="false" />

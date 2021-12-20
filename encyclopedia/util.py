@@ -4,6 +4,7 @@ import os
 import markdown2
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
+from markdownify import markdownify
 
 
 
@@ -24,13 +25,17 @@ def save_entry(title, content):
     """
     filename = f"entries/{title}.md"
     if default_storage.exists(filename):
-        os.remove(filename)
-        default_storage.save(filename, ContentFile(content))
         return False
     else:
         default_storage.save(filename, ContentFile(content))
         return True
 
+def update_entry(title, content):
+    filename = f"entries/{title}.md"
+    if default_storage.exists(filename):
+        os.remove(filename)
+        default_storage.save(filename, ContentFile(content))
+        return True
 
 def get_entry(title):
     """
@@ -63,7 +68,7 @@ def search_entry(search):
         return results
 
 
-def edit_entry(title):
+def get_data(title):
     file_html_content = markup_to_html(title)
     return title, file_html_content
 
@@ -72,3 +77,8 @@ def markup_to_html(title):
     html = markdown2.markdown_path(f"entries/{title}.md")
     x = markdown2.markdown(html)
     return x
+
+def html_to_markup(content):
+    markdown = markdownify(content)
+    return markdown
+
