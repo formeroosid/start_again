@@ -21,8 +21,12 @@ def article(request, title):
 def rando(request):
     entry_list = util.list_entries()
     rand = random.choice(entry_list)
+    x = util.get_html_data(rand)
+    title = x[0]
+    content = x[1]
     return render(request, "encyclopedia/rando.html", {
-        "title": util.markup_to_html(rand)
+        "title": title,
+        "content": content
     })
 
 
@@ -40,9 +44,9 @@ def create(request):
             content = clean["body"]
             save = util.save_entry(title, content)  # Capture return from save function
             if save:
-                messages.success(request, "New article saved to disc")
+                messages.success(request, f'{title} saved to disc')
             else:
-                messages.success(request, "Duplicate filename, please select another.")
+                messages.error(request, f'Duplicate title - "{title}", please enter a different one.')
                 return redirect('index')
     return render(request, "encyclopedia/new_article.html", {'form1': form})
 
@@ -56,19 +60,20 @@ def search(request):
 
 
 def edit_article(request):
-    if request.method == 'POST':
+    if 'mode' in request.POST.keys():
+        title = request.POST.get('name')
+        content = request.POST.get('body')
+        util.update_entry(title, content)
+        messages.success(request, f"{title} saved to disc")
+        return redirect(f'/wiki/{title}')
+    else:
         title = list(request.POST.items())
         title = title[1]
         title = title[0]
-        x = util.get_data(title)
-        content = x()[1]
-        util.update_entry(title, content)
-        return True
-    else:
         entry_data = util.get_data(title)
         initial_data = {
             'name': title,
-            'body': entry_data[1]
+            'body': entry_data
             }
         form = EditArticleForm(initial=initial_data)
         return render(request, "encyclopedia/edit_article.html", {"form": form})

@@ -37,7 +37,7 @@ def update_entry(title, content):
         default_storage.save(filename, ContentFile(content))
         return True
 
-def get_entry(title):
+def get_data(title):
     """
     Retrieves an encyclopedia entry by its title. If no such
     entry exists, the function returns None.
@@ -68,10 +68,9 @@ def search_entry(search):
         return results
 
 
-def get_data(title):
+def get_html_data(title):
     file_html_content = markup_to_html(title)
     return title, file_html_content
-
 
 def markup_to_html(title):
     html = markdown2.markdown_path(f"entries/{title}.md")

@@ -6,7 +6,9 @@
 
 {% block body %}
     <div class="code">
-    {{ title | safe }}
+        <h1>{{ title | safe }}</h1>
+    <hr/>
+    {{ content | safe }}
     <a href="/" class="page-link">Return Home</a>
     </div>
 {% endblock %}

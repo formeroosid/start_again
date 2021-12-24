@@ -18,5 +18,7 @@ class EditArticleForm(forms.Form):
         widget=forms.TextInput(attrs={'class': 'form-control', 'cols': 60, 'rows': 3, 'Field.disabled': True}))
     body = forms.CharField(
         widget=forms.Textarea(attrs={'class': 'form-control', 'cols': 60, 'rows': 5, 'required': True}))
+    mode = forms.CharField(
+        widget=forms.HiddenInput(), initial='overwrite')
 
 
